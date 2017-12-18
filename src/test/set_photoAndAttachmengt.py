@@ -1,0 +1,115 @@
+# -*- coding:utf-8 -*-
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from time import sleep
+import os
+import sys
+# sys.path.append(os.path.join(os.path.dirname(__file__), '..', ))
+from public import *
+
+def createCategory():
+    dr.find_element_by_xpath('//*[@id="nav"]/ul/li[1]').click()
+    #新增图片类别
+    dr.switch_to_frame('menu')
+    dr.find_element_by_xpath('/html/body/div/div[3]/div[1]').click()
+    sleep(1.3)
+    #获取内容为“图片类别”的li
+    # list_li = dr.find_elements_by_class_name('level1')
+    # photo_num = [list_li.index(i) for i in list_li if i == '图片类别'][0]
+    dr.find_element_by_xpath('//*[@id="tree3_1_ul"]/li').click()
+    dr.switch_to.parent_frame()
+    dr.switch_to_frame('page')
+    dr.find_element_by_xpath('//*[@id="grid_toolbar"]/div[1]/a[1]').click()
+    sleep(0.5)
+    dr.switch_to.parent_frame()
+    dr.switch_to_frame('dialog_frame')
+    dr.find_element_by_xpath('//*[@id="vc_name"]').send_keys('图片图片')
+    dr.find_element_by_xpath('//*[@id="dialog-toolbar-panel"]/input[1]').click()
+    sleep(1)
+    #新增附件类别
+    dr.switch_to.parent_frame()
+    dr.switch_to_frame('menu')
+    dr.find_element_by_xpath('//*[@id="tree3_1_ul"]/li[4]').click()
+    sleep(0.5)
+    dr.switch_to.parent_frame()
+    dr.switch_to_frame('page')
+    dr.find_element_by_xpath('//*[@id="grid_toolbar"]/div[1]/a[1]').click()
+    sleep(0.5)
+    dr.switch_to.parent_frame()
+    dr.switch_to_frame('dialog_frame')
+    dr.find_element_by_xpath('//*[@id="vc_name"]').send_keys('附件附件')
+    dr.find_element_by_xpath('//*[@id="dialog-toolbar-panel"]/input[1]').click()
+    dr.switch_to_default_content()
+
+"""上传附件、图片模板"""
+def upload_photo_attachment():
+    sleep(2)
+    dr.switch_to_frame('menu')
+    dr.find_element_by_xpath('//*[@id="tree3_1_ul"]/li/ul/li[3]').click()
+    sleep(1)
+    dr.switch_to.parent_frame()
+    dr.switch_to_frame('page')
+    dr.find_element_by_xpath('//*[@id="grid_toolbar"]/div[1]/a[1]').click()
+    sleep(6)
+    dr.switch_to.parent_frame()
+    dr.switch_to_frame('dialog_frame')
+    dr.find_element_by_xpath('//*[@id="uploader_browse"]').click()
+    os.system('C:\\Users\\Administrator.P5AMJFB6WH8DVIJ\\Desktop\\壁纸\\1.exe "C:\\Users\\Administrator.P5AMJFB6WH8DVIJ\\Desktop\\壁纸\\1.jpg"')
+    sleep(0.5)
+    dr.find_element_by_xpath('//*[@id="uploader_container"]/div/div/div[2]/div[1]/div/a[2]').click()
+    sleep(1)
+
+    dr.switch_to_default_content()
+    dr.switch_to_frame('menu')
+    dr.find_element_by_xpath('//*[@id="tree3_1_ul"]/li[4]/ul/li[3]').click()
+    sleep(2)
+    dr.switch_to.parent_frame()
+    dr.switch_to_frame('page')
+    dr.find_element_by_xpath('//*[@id="grid_toolbar"]/div[1]/a[1]').click()
+    sleep(6)
+    dr.switch_to.parent_frame()
+    dr.switch_to_frame('dialog_frame')
+    dr.find_element_by_xpath('//*[@id="uploader_browse"]').click()
+    os.system('C:\\Users\\Administrator.P5AMJFB6WH8DVIJ\\Desktop\\壁纸\\模板.exe "C:\\Users\\Administrator.P5AMJFB6WH8DVIJ\\Desktop\\壁纸\\模板.doc"')
+    sleep(0.5)
+    dr.find_element_by_xpath('//*[@id="uploader_container"]/div/div/div[2]/div[1]/div/a[2]').click()
+    sleep(0.5)
+    dr.switch_to_default_content()
+
+def create_message():
+    dr.switch_to_frame('menu')
+    dr.find_element_by_xpath('/html/body/div/div[1]/div[1]').click()
+    sleep(1)
+    dr.find_element_by_xpath('//*[@id="tree1_2"]').click()
+    dr.switch_to.parent_frame()
+    dr.switch_to_frame('page')
+    dr.find_element_by_xpath('//*[@id="grid_toolbar"]/div[1]/a[1]').click()
+    sleep(1.5)
+    dr.switch_to_default_content()
+    dr.switch_to.parent_frame()
+    dr.switch_to_frame('dialog_frame')
+    dr.find_element_by_xpath('//*[@id="vc_Title1"]').send_keys('格力空调真是好！！！')
+    dr.find_element_by_xpath('//*[@id="edui120"]').click()
+    sleep(2)
+    dr.switch_to.parent_frame()
+    list_frame = dr.find_elements_by_name('dialog_frame')
+    dr.switch_to_frame(list_frame[1])
+    dr.switch_to_frame('picList')
+    dr.find_element_by_xpath('//*[@id="select_typeId"]').click()
+    dr.find_element_by_xpath('//*[@id="select_typeId_menu"]/div/ul/li[3]').click()
+    sleep(2)
+    dr.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div[1]/div/table/tbody/tr/td[1]/div/input').click()
+    dr.switch_to.parent_frame()
+    dr.find_element_by_xpath('//*[@id="dialog-toolbar-panel"]/input[1]').click()
+    sleep(2)
+    dr.switch_to_default_content()
+    dr.switch_to_frame('dialog_frame')
+    dr.find_element_by_xpath('//*[@id="editbutton"]').click()
+    sleep(1)
+
+
+if __name__ == '__main__':
+    user_login('test', 'hanweb1')
+    createCategory()
+    upload_photo_attachment()
+    create_message()
