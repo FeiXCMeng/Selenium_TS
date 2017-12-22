@@ -1,3 +1,6 @@
+import sys
+sys.path.append('..')
+from utils import *
 from createNet import *
 from public import *
 from setAuditUser import *
@@ -6,6 +9,7 @@ from columnInherit import *
 from manage_organization import *
 from set_photoAndAttachmengt import *
 from changeWebsite import *
+
 
 try:
     get_url()
