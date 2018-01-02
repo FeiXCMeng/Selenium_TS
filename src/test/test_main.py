@@ -9,12 +9,17 @@ from columnInherit import *
 from manage_organization import *
 from set_photoAndAttachmengt import *
 from changeWebsite import *
+from utils import *
 
 
-try:
-    get_url()
-except:
-    pass
+class TestMain(object):
+	# def __init__(self, arg):
+	# 	self.arg = arg
+	list_name_passwd = excel_table_byname()
+		
+
+get_url()
+
 login('wy', 'hanweb1')
 website_mail = websiteName()
 
