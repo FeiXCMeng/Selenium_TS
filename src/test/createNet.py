@@ -63,8 +63,11 @@ def createMessage():
 	dr.switch_to_default_content()
 	sleep(5)
 	dr.switch_to_frame('dialog_frame')
-	dr.find_element_by_id('vc_Title1').send_keys('2018年，还能允许房价涨多少？')
-	''' 无法在文章正文中输入内容，已经定位到了，但是无法输入，firefox就可以，很奇怪'''
+	dr.find_element_by_id('vc_Title1').send_keys('速途网年终特刊：2017中国互联网十大新闻')
+
+	''' 
+	    无法在文章正文中输入内容，已经定位到了，但是无法输入，firefox就可以，很奇怪
+	'''
 	# dr.switch_to_frame('ueditor_0')
 	# sleep(5)
 	# dr.find_element_by_xpath('/html/body/p').click()

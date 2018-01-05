@@ -1,5 +1,5 @@
 #  -*- coding:utf-8 -*-
-import csv
+# import csv
 import sys
 import xlrd
 import re
@@ -29,23 +29,23 @@ def excel_table_byname(file='../../data/name.xls', colnameindex=0, by_name=u'She
 	table = data.sheet_by_name(by_name)
 	nrows = table.nrows
 	colnames = table.row_values(colnameindex)
-	list1 = []
+	list_names = []
 	for rownum in range(1, nrows):
 		row = table.row_values(rownum)
 		if row:
 			app = {}
 			for i in range(len(colnames)):
 				app[colnames[i]] = row[i]
-			list1.append(app)
-	return list1
+			list_names.append(app)
+	return list_names
 
 
 #-----------------------数组中的每个元素都是一个字典
-def login_data():
-	tables = excel_table_byname()
-	dict1 = tables[1]
-	print(dict1["name"])
-	print(dict1["password"])
+# def login_data():
+# 	tables = excel_table_byname()
+# 	dict1 = tables[0]
+# 	print(dict1["name"])
+# 	print(dict1["password"])
 
-if __name__ == '__main__':
-	login_data()
+# if __name__ == '__main__':
+# 	login_data()

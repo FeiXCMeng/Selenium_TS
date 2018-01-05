@@ -19,7 +19,7 @@ def create_audit_message():
     dr.switch_to_default_content()
     sleep(5)
     dr.switch_to_frame('dialog_frame')
-    dr.find_element_by_id('vc_Title1').send_keys('2018年，还能允许房价涨多少？'+str(random.randrange(1, 100)))
+    dr.find_element_by_id('vc_Title1').send_keys('2018年来了，怎样才能达成新年目标？'+str(random.randrange(1, 100)))
     dr.find_element_by_xpath('//*[@id="moresave"]/i').click()
     sleep(0.5)
     dr.find_element_by_xpath('//*[@id="moresave-menu"]/a[2]').click()
@@ -27,7 +27,6 @@ def create_audit_message():
     logout()
 
 def auditArticle(status=0):
-    # login(name, password)
     sleep(1.5)
     dr.find_element_by_xpath('//*[@id="nav"]/ul/li[1]').click()
     dr.switch_to_frame("menu")
@@ -43,18 +42,15 @@ def auditArticle(status=0):
         dr.find_element_by_xpath('//*[@id="grid_toolbar"]/div[1]/a[1]').click()
     else:
         dr.find_element_by_xpath('//*[@id="grid_toolbar"]/div[1]/a[2]').click()
-    # dr.find_element_by_xpath('//*[@id="grid_toolbar"]/div[1]/a[2]').click()
     dr.switch_to.parent_frame()
     #弹框确认
     dr.find_element_by_xpath('/html/body/div[8]/div[2]/div[4]/a[1]').click()
     sleep(0.5)
     dr.switch_to_default_content()
-
     logout()
 
 #判断第一个审核员是否审核通过
 def first_judge():
-    # login(name, password)
     sleep(1.5)
     dr.find_element_by_xpath('//*[@id="nav"]/ul/li[1]').click()
     dr.switch_to_frame("menu")
