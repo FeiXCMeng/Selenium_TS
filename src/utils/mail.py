@@ -1,20 +1,35 @@
 #-*- coding:utf-8 -*-
+import sys
+sys.path.append('../')
 import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
+from email.mime.multipart import MIMEMultipart
 
 class Email(object):
-    def __init__(self, server, user, password, sender, receiver):
+    def __init__(self, server, user, password, sender, receiver, title, content):
         self.server = server
         self.user = user
         self.password = password
         self.sender = sender
         self.receiver = receiver
+        self.title = title
+        self.content = content
+        self.message = MIMEMultipart('related')
 
     def send(self):
-        subject = 'Email Test!'
-        self.message = MIMEText('<html><h1>你好,世界</h1></html>', 'html', 'utf-8')
-        self.message['Subject'] = Header(subject, 'utf-8')
+        # self.message = MIMEText('<html><h1>你好,世界</h1></html>', 'html', 'utf-8')
+        # sendfile = open('E:\\log.txt', 'rb').read()
+        sendfile = open('./unittest/report/report.html', 'rb').read()
+        att = MIMEText(sendfile, 'base64', 'utf-8')
+        att['Content-Type'] = 'application/octet-stream'
+        att['Content-Disposition'] = 'attachment; filename="report.html"'
+
+        
+        self.message['Subject'] = self.title
+        self.message.attach(att)
+        self.message.attach(MIMEText(self.content))
+        # self.message['Subject'] = Header(subject, 'utf-8')
         #发件人和收件人的参数需要定义
         self.message['From'] = self.sender
         self.message['To'] = self.receiver
@@ -27,11 +42,13 @@ class Email(object):
 
 if __name__ == '__main__':
     e = Email('smtp.163.com',
-            'mingzulingzhen@163.com',
-            'yj0211',
-            'mingzulingzhen@163.com',
-            '2473015134@qq.com'
-            )
+              'mingzulingzhen@163.com',
+              'yj0211',
+              'mingzulingzhen@163.com',
+              '2473015134@qq.com',
+              'FeiXCMeng测试报告',
+              '这是今天的测试报告，在附件中，请查看'
+             )
     e.send()
 # #邮箱服务器
 # smtpserver = 'smtp.163.com'
